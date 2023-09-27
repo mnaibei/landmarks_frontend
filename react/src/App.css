@@ -2,9 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
-.landmark-images {
+/* .landmark-images {
   width: 200px;
   height: 100px;
+} */
+
+.landmarks-card {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column-reverse;
 }
