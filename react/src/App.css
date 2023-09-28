@@ -5,13 +5,15 @@
   list-style: none;
 }
 
-/* .landmark-images {
-  width: 200px;
-  height: 100px;
-} */
+.landmark-images {
+  /* width: 100%; */
+  height: 50.25em;
+}
 
 .landmarks-card {
   border: 2px solid red;
   display: flex;
+  height: 100vh;
+  width: 100%;
   flex-direction: column-reverse;
 }

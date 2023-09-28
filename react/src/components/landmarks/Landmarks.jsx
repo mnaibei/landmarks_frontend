@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLandmarks } from "../../redux/landmarks/apiSlice";
 
 const Landmarks = () => {
   const dispatch = useDispatch();
-  const landmarks = useSelector((state) => state.landmarks.landmarks);
-
-
-
+  const { landmarks } = useSelector((state) => state.landmarks);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ const Landmarks = () => {
 
         return nextImageIndex;
       });
-    }, 300000); // Change image every 3 seconds (adjust as needed)
+    }, 35000); // Change image every 3 seconds (adjust as needed)
 
     return () => clearInterval(interval);
   }, [landmarks]);
@@ -36,7 +34,10 @@ const Landmarks = () => {
       <h2>Landmarks</h2>
       <div className="container">
         {landmarks.map((landmark, index) => (
-          <div
+
+          <Link
+            to={`landmark/${landmark.id}`}
+            state={landmark}
             key={landmark.id}
             className={`landmarks-card ${index === currentImageIndex ? "active" : ""
               }`}
@@ -49,9 +50,10 @@ const Landmarks = () => {
                 className="landmark-images"
               />
             )}
-          </div>
+          </Link>
+
         ))}
-      </div>
+      </div >
     </div>
   );
 };
