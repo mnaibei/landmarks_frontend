@@ -1,8 +1,7 @@
-import Landmarks from './components/landmarks/Landmarks'
-import LandmarkDetails from './components/landmarks/LandmarkDetails'
-import { Routes } from 'react-router-dom'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
+import { Routes, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Landmarks from './components/landmarks/Landmarks';
+import LandmarkDetails from './components/landmarks/LandmarkDetails';
+import './App.css';
 
 const router = createBrowserRouter([
   {
