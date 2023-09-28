@@ -7,7 +7,7 @@ export const fetchLandmarks = createAsyncThunk(
     try {
       const response = await axios.get("http://localhost:3000/landmarks");
       if (response.status === 200) {
-        console.log(response.data);
+        // console.log(response.data);
         return response.data;
       }
     } catch (error) {

@@ -19,7 +19,7 @@ const landmarkSlice = createSlice({
       .addCase(fetchLandmarks.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.landmarks = state.landmarks = action.payload;
-        console.log(state.landmarks);
+        // console.log(state.landmarks);
       })
       .addCase(fetchLandmarks.rejected, (state, action) => {
         state.status = "failed";
