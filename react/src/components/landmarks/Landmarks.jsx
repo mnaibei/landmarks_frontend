@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchLandmarks } from "../../redux/landmarks/apiSlice";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLandmarks } from '../../redux/landmarks/apiSlice';
 
 const Landmarks = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const Landmarks = () => {
       setCurrentImageIndex((prevIndex) => {
         const nextImageIndex = (prevIndex + 1) % landmarks.length;
 
-        console.log("landmarks.length", landmarks.length);
-        console.log("currentImageIndex", prevIndex);
-        console.log("nextImageIndex", nextImageIndex);
+        console.log('landmarks.length', landmarks.length);
+        console.log('currentImageIndex', prevIndex);
+        console.log('nextImageIndex', nextImageIndex);
 
         return nextImageIndex;
       });
@@ -36,24 +36,25 @@ const Landmarks = () => {
         {landmarks.map((landmark, index) => (
 
           <Link
-            to={`landmark/${landmark.id}`}
+            to={`landmark/${landmark.name.replace(/\s+/g, '-').toLowerCase()}`} // show landmark name in the url path instead of id
             state={landmark}
             key={landmark.id}
-            className={`landmarks-card ${index === currentImageIndex ? "active" : ""
-              }`}
+            className={`landmarks-card ${index === currentImageIndex ? 'active' : ''
+            }`}
           >
             {landmark.name}
             {landmark.images.length > 0 && (
               <img
-                src={landmark.images[currentImageIndex % landmark.images.length]} // Use modulo to ensure index is within bounds
-                alt={`${landmark.name} - Image ${currentImageIndex}`}
+                src={landmark.images[currentImageIndex
+                  % landmark.images.length]} // Use modulo to ensure index is within bounds
+                alt={`${landmark.name} ${currentImageIndex}`}
                 className="landmark-images"
               />
             )}
           </Link>
 
         ))}
-      </div >
+      </div>
     </div>
   );
 };
