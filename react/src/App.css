@@ -6,14 +6,17 @@
 }
 
 .landmark-images {
-  /* width: 100%; */
-  height: 50.25em;
+  width: 100%;
+  height: 400px;
 }
 
-.landmarks-card {
-  border: 2px solid red;
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column-reverse;
+@media screen and (max-width: 768px) {
+  .landmark-images {
+    border: 5px solid green;
+    height: 100px;
+  }
+
+  .desc {
+    height: 20%;
+  }
 }
