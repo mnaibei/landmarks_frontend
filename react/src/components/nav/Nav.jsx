@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
 const Nav = () => (
-  <nav>
-    <ul>
+  <nav className=" flex justify-between border-2 shadow p-2 sticky top-0 bg-white items-center">
+    <h1>Placeholder</h1>
+    <ul className="flex  gap-4 p-2">
       <li>
         <Link to="/">Home</Link>
       </li>
