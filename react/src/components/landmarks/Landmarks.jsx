@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLandmarks } from '../../redux/landmarks/apiSlice';
+import IntroHeader from './IntroHeader';
 
 const Landmarks = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Landmarks = () => {
 
   return (
     <div>
-      <h2>Landmarks</h2>
+      <IntroHeader />
       <div className="container">
         {landmarks.map((landmark, index) => (
 

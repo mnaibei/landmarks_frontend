@@ -1,16 +1,29 @@
 import { Routes, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Landmarks from './components/landmarks/Landmarks';
 import LandmarkDetails from './components/landmarks/LandmarkDetails';
+import Nav from './components/nav/Nav';
 import './App.css';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Landmarks />,
+    element: (
+      <>
+        <Nav />
+        <Landmarks />
+        ,
+      </>
+    ),
   },
   {
     path: 'landmark/:id',
-    element: <LandmarkDetails />,
+    element: (
+      <>
+        <Nav />
+        <LandmarkDetails />
+        ,
+      </>
+    ),
   },
 ]);
 
