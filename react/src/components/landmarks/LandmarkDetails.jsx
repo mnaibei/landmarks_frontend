@@ -1,12 +1,19 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 
 const LandmarkDetails = () => {
   const { state } = useLocation();
   console.log('state', state);
   console.log('state.images', state.images.length);
+  console.log('coordinates', state.coordinates);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [coordinates, setCoordinates] = useState({
+    latitude: 0, // Default values or the actual coordinates
+    longitude: 0,
+  });
 
   useEffect(() => {
     // Automatically advance the image index
@@ -24,6 +31,14 @@ const LandmarkDetails = () => {
 
     return () => clearInterval(interval);
   }, [state]);
+
+  useEffect(() => {
+    // Update coordinates state with data values
+    setCoordinates({
+      latitude: state.coordinates.latitude,
+      longitude: state.coordinates.longitude,
+    });
+  }, [state.coordinates]);
 
   return (
     <>
@@ -212,6 +227,18 @@ const LandmarkDetails = () => {
             Location:
             {state.address}
           </p>
+
+          <MapContainer
+            center={[coordinates.latitude, coordinates.longitude]}
+            zoom={2.5} // You can adjust the zoom level as needed
+            style={{ height: '400px', width: '100%' }} // Set the map size
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // Use OpenStreetMap tiles
+            />
+            <Marker position={[coordinates.latitude, coordinates.longitude]} />
+          </MapContainer>
+
         </div>
       </div>
     </>
