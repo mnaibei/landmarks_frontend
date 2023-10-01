@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { FiMapPin } from 'react-icons/fi';
 import { fetchLandmarks } from '../../redux/landmarks/apiSlice';
 import IntroHeader from './IntroHeader';
 import SearchComponent from '../searchbar/Search';
@@ -32,8 +33,15 @@ const Landmarks = () => {
 
   const filteredLandmarks = landmarks.filter((landmark) => {
     const landmarkName = landmark.name.toLowerCase();
+    const landmarkCountry = landmark.country.toLowerCase();
+    const landmarkType = landmark.type_of_landmark.toLowerCase();
     const searchTerm = search.toLowerCase();
-    return landmarkName.includes(searchTerm);
+
+    return (
+      landmarkName.includes(searchTerm)
+      || landmarkCountry.includes(searchTerm)
+      || landmarkType.includes(searchTerm)
+    );
   });
 
   const pageCount = Math.ceil(filteredLandmarks.length / itemsPerPage);
@@ -48,7 +56,7 @@ const Landmarks = () => {
       <IntroHeader />
       <SearchComponent value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="p-2 m-2 flex flex-col place-items-center items-center">
-        <div className="grid grid-cols-2 max-sm:grid-cols-1 items-center justify-items-center w-full gap-2">
+        <div className="grid grid-cols-2 max-sm:grid-cols-1 auto-rows-auto items-center justify-items-center w-full gap-2">
           {paginatedLandmarks.map((landmark, index) => (
             <div
               key={landmark.id}
@@ -62,8 +70,14 @@ const Landmarks = () => {
                   className="landmark-images border-2 rounded border-black"
                 />
               )}
-              <div className="flex flex-col gap-1 w-full p-2">
-                <h1 className="text-2xl font-extrabold">{landmark.name}</h1>
+              <div className="desc-container w-full flex flex-col gap-1 p-2">
+                <div className="test flex items-center justify-between">
+                  <h1 className="text-2xl font-extrabold">{landmark.name}</h1>
+                  <p className="font-bold flex items-center">
+                    <FiMapPin className="inline-block mr-1" />
+                    {landmark.country}
+                  </p>
+                </div>
                 <p>
                   Type:
                   {' '}
@@ -77,7 +91,7 @@ const Landmarks = () => {
                   to={`landmark/${landmark.name.replace(/\s+/g, '-').toLowerCase()}`}
                   state={landmark}
                   key={landmark.id}
-                  className="learn-more flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded max-sm:w-full xl:w-2/5 max-lg:w-full justify-center items-center self-end marker:p-1"
+                  className="learn-more flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded max-sm:w-full xl:w-2/5 max-lg:w-full justify-center items-center self-end marker:p-1"
                 >
                   <button type="button">Learn More</button>
                 </Link>

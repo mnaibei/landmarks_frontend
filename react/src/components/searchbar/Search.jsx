@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export default function SearchComponent({ value, onChange }) {
   return (
-    <form className="max-w-sm w-1/2 px-4 self-center z-0">
+    <form className="max-w-sm w-1/2 max-sm:w-full max-md:w-full px-4 self-center z-0">
       <div className="relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ export default function SearchComponent({ value, onChange }) {
         </svg>
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search by country, landmark, or type"
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
           value={value} // Set the input value
           onChange={onChange} // Pass the onChange handler
