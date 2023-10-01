@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLandmarks } from '../../redux/landmarks/apiSlice';
 import IntroHeader from './IntroHeader';
+import SearchComponent from '../searchbar/Search';
 
 const Landmarks = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,31 @@ const Landmarks = () => {
     return () => clearInterval(interval);
   }, [landmarks]);
 
+  // filter landmarks by name
+  const [search, setSearch] = useState('');
+
+  const filterLandmarks = landmarks.filter((landmark) => {
+    const landmarkName = landmark.name.toLowerCase();
+    const searchTerm = search.toLowerCase();
+
+    // console.log('landmarkName:', landmarkName);
+    // console.log('searchTerm:', searchTerm);
+
+    return landmarkName.includes(searchTerm);
+  });
+
   return (
     <>
       <IntroHeader />
+
+      <SearchComponent
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
       <div className="p-2 m-2  flex flex-col place-items-center items-center">
         <div className=" grid grid-cols-2 max-sm:auto-rows-fr items-center  justify-items-center w-full gap-2">
-          {landmarks.map((landmark, index) => (
+          {filterLandmarks.map((landmark, index) => (
 
             <div
               // to={`landmark/${landmark.name.replace(/\s+/g, '-')
@@ -53,7 +73,7 @@ const Landmarks = () => {
                   className="landmark-images border-2 rounded border-black "
                 />
               )}
-              <div className=" flex flex-col gap-1
+              <div className=" flex flex-col gap-1 w-full p-2
               "
               >
 

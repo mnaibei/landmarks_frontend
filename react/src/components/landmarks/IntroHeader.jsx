@@ -2,7 +2,7 @@ const IntroHeader = () => (
   <header className="intro-header bg-white text-center ">
     <div className=" border-2 border-gray-200 shadow p-4 m-2">
       <h1 className=" text-2xl font-extrabold">Embark on an African Adventure</h1>
-      <p>
+      <p className="text-sm">
         Welcome to a mesmerizing journey through the diverse and enchanting world of Africa&apos;s
         landmarks.
         {' '}
@@ -15,7 +15,7 @@ const IntroHeader = () => (
         {' '}
         that have captured the hearts of travelers for generations.
       </p>
-      <p>
+      <p className="text-sm">
         From the monumental pyramids of Egypt, shrouded in ancient mysteries,
         to the lush wilderness of the Serengeti,
         {' '}
@@ -24,7 +24,7 @@ const IntroHeader = () => (
         where untamed wildlife roams
         free, each landmark tells a compelling story of history, heritage, and natural wonder.
       </p>
-      <p>
+      <p className="text-sm">
         Immerse yourself in the vibrant cultures of Africa&apos;s cities,
         explore the breathtaking landscapes that stretch from the
         Sahara Desert
@@ -34,7 +34,7 @@ const IntroHeader = () => (
         to the Cape of Good Hope, and witness the
         profound historical significance of landmarks that have withstood the test of time.
       </p>
-      <p>
+      <p className="text-sm">
         Whether you&apos;re an adventurer seeking thrilling safaris or a history
         enthusiast eager to uncover the past,
         {' '}
