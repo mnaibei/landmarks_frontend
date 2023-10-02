@@ -18,6 +18,11 @@
   height: 400px;
 }
 
+.landmark-details-images {
+  height: 700px;
+  width: 70%;
+}
+
 @media screen and (min-width: 1000px) {
   .desc {
     text-overflow: ellipsis;
@@ -27,8 +32,17 @@
 }
 
 @media screen and (max-width: 768px) {
+  * {
+    font-size: 16px;
+  }
+
   .landmark-images {
     height: 200px;
+  }
+
+  .landmark-details-images {
+    height: 300px;
+    width: 100%;
   }
 
   .test {
