@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
+import { useMediaQuery } from 'react-responsive';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 
 const LandmarkDetails = () => {
@@ -14,6 +15,16 @@ const LandmarkDetails = () => {
     latitude: 0, // Default values or the actual coordinates
     longitude: 0,
   });
+
+  // make map responsive
+  const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
+  const desktopZoom = 2.5;
+  const mobileZoom = 1.1;
+  const desktopHeight = '500px';
+  const mobileHeight = '200px';
+
+  const zoomLevel = isMobile ? mobileZoom : desktopZoom;
+  const mapHeight = isMobile ? mobileHeight : desktopHeight;
 
   useEffect(() => {
     // Automatically advance the image index
@@ -42,7 +53,7 @@ const LandmarkDetails = () => {
 
   return (
     <>
-      <div className="mt-20 m-2 text-center gap-2 flex flex-col items-center">
+      <div className="mt-16 m-2 text-center gap-2 flex flex-col items-center">
         <h1 className="text-2xl font-extrabold">{state.name}</h1>
         {state.images.length > 0 && (
           <img
@@ -230,8 +241,8 @@ const LandmarkDetails = () => {
 
           <MapContainer
             center={[coordinates.latitude, coordinates.longitude]}
-            zoom={2.5} // You can adjust the zoom level as needed
-            style={{ height: '500px', width: '100%' }} // Set the map size
+            zoom={zoomLevel} // You can adjust the zoom level as needed
+            style={{ height: mapHeight, width: '100%' }} // Set the map size
             className="border-2 border-black z-0"
           >
             <TileLayer
