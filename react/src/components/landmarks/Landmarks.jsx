@@ -9,7 +9,7 @@ import SearchComponent from '../searchbar/Search';
 
 const Landmarks = () => {
   const dispatch = useDispatch();
-  const { landmarks } = useSelector((state) => state.landmarks);
+  const { landmarks, isLoading } = useSelector((state) => state.landmarks);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [search, setSearch] = useState('');
   const itemsPerPage = 4;
@@ -31,7 +31,7 @@ const Landmarks = () => {
     setCurrentPage(newPage);
   };
 
-  const filteredLandmarks = landmarks.filter((landmark) => {
+  const filteredLandmarks = landmarks?.filter((landmark) => {
     const landmarkName = landmark.name.toLowerCase();
     const landmarkCountry = landmark.country.toLowerCase();
     const landmarkType = landmark.type_of_landmark.toLowerCase();
@@ -42,7 +42,19 @@ const Landmarks = () => {
       || landmarkCountry.includes(searchTerm)
       || landmarkType.includes(searchTerm)
     );
-  });
+  }) || [];
+
+  const renderLoadingOrError = () => {
+    if (isLoading) {
+      return <h1>Loading...</h1>;
+    }
+
+    if (landmarks.length === 0) {
+      return <div>Loading landmarks...</div>; // You can customize this message
+    }
+
+    return null;
+  };
 
   const pageCount = Math.ceil(filteredLandmarks.length / itemsPerPage);
 
@@ -57,6 +69,7 @@ const Landmarks = () => {
       <SearchComponent value={search} onChange={(e) => setSearch(e.target.value)} />
       <div className="p-2 m-2 flex flex-col place-items-center items-center">
         <div className="grid grid-cols-2 max-sm:grid-cols-1 auto-rows-auto items-center justify-items-center w-full gap-2">
+          {renderLoadingOrError()}
           {paginatedLandmarks.map((landmark, index) => (
             <div
               key={landmark.id}
@@ -91,7 +104,7 @@ const Landmarks = () => {
                   to={`landmark/${landmark.name.replace(/\s+/g, '-').toLowerCase()}`}
                   state={landmark}
                   key={landmark.id}
-                  className="learn-more flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded max-sm:w-full xl:w-2/5 max-lg:w-full justify-center items-center self-end marker:p-1"
+                  className="learn-more flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded max-sm:w-full xl:w-2/5 max-lg:w-full justify-center items-center self-end marker:p-1 dark:text-white dark:border-white"
                 >
                   <button type="button">Learn More</button>
                 </Link>
