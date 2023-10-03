@@ -3,17 +3,27 @@
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  font-size: 24px;
+  font-family: Cochins, 'Times New Roman', sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 .landmark-images {
-  /* width: 100%; */
-  height: 50.25em;
+  width: 100%;
+  height: 400px;
 }
 
-.landmarks-card {
-  border: 2px solid red;
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column-reverse;
+@media screen and (max-width: 768px) {
+  .landmark-images {
+    border: 5px solid green;
+    height: 100px;
+  }
+
+  .desc {
+    height: 20%;
+  }
 }

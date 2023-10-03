@@ -44,15 +44,11 @@ const LandmarkDetails = () => {
     <>
       <div>
         <h1>{state.name}</h1>
-        <p>
-          Type of landmark:
-          {state.type_of_landmark}
-        </p>
         {state.images.length > 0 && (
           <img
             src={state.images[currentImageIndex % state.images.length]}
             alt={`${state.name} ${currentImageIndex}`}
-            className="landmark-images"
+            className="landmark-details-images"
           />
         )}
       </div>
