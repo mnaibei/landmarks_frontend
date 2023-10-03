@@ -38,7 +38,7 @@ const LandmarkDetails = () => {
 
         return nextImageIndex;
       });
-    }, 35000); // Change image every 3 seconds (adjust as needed)
+    }, 3000); // Change image every 3 seconds (adjust as needed)
 
     return () => clearInterval(interval);
   }, [state]);

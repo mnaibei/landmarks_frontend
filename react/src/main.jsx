@@ -6,7 +6,7 @@ import App from './App';
 import './index.css';
 
 const rootElement = document.getElementById('root');
-rootElement.classList.add('dark:bg-slate-500', 'dark:text-white');
+rootElement.classList.add('dark:bg-[#545252]', 'dark:text-white');
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -49,8 +49,8 @@ const Landmarks = () => {
       return <h1>Loading...</h1>;
     }
 
-    if (landmarks.length === 0) {
-      return <div>Loading landmarks...</div>; // You can customize this message
+    if (landmarks?.length === 0) {
+      return <div>Loading landmarks...</div>;
     }
 
     return null;
@@ -67,9 +67,9 @@ const Landmarks = () => {
     <>
       <IntroHeader />
       <SearchComponent value={search} onChange={(e) => setSearch(e.target.value)} />
+      {renderLoadingOrError()}
       <div className="p-2 m-2 flex flex-col place-items-center items-center">
         <div className="grid grid-cols-2 max-sm:grid-cols-1 auto-rows-auto items-center justify-items-center w-full gap-2">
-          {renderLoadingOrError()}
           {paginatedLandmarks.map((landmark, index) => (
             <div
               key={landmark.id}
