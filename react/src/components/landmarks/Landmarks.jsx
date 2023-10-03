@@ -6,6 +6,7 @@ import { FiMapPin } from 'react-icons/fi';
 import { fetchLandmarks } from '../../redux/landmarks/apiSlice';
 import IntroHeader from './IntroHeader';
 import SearchComponent from '../searchbar/Search';
+import Footer from '../footer/Footer';
 
 const Landmarks = () => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const Landmarks = () => {
             <div
               key={landmark.id}
               className={`landmarks-card border-2 rounded shadow flex flex-col h-9/12 w-full justify-center items-center p-2 ${index === currentImageIndex ? 'active' : ''
-              }`}
+                }`}
             >
               {landmark.images.length > 0 && (
                 <img
@@ -112,7 +113,7 @@ const Landmarks = () => {
             </div>
           ))}
         </div>
-        <div className="pagination flex items-center mt-4 gap-4">
+        <div className="pagination flex items-center mt-4 mb-16 gap-4">
           <button
             onClick={() => handlePageChange((currentPage - 1 + pageCount) % pageCount)}
             disabled={currentPage === 0}
@@ -138,6 +139,7 @@ const Landmarks = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
