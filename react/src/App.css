@@ -5,6 +5,7 @@
   list-style: none;
   font-size: 24px;
   font-family: Cochins, 'Times New Roman', sans-serif;
+  scroll-behavior: smooth;
 }
 
 #root {
@@ -20,7 +21,7 @@
 @media screen and (max-width: 768px) {
   .landmark-images {
     border: 5px solid green;
-    height: 100px;
+    height: 200px;
   }
 
   .desc {
