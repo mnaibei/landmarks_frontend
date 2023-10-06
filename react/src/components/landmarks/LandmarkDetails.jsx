@@ -56,7 +56,7 @@ const LandmarkDetails = () => {
           <img
             src={state?.images[currentImageIndex % state.images.length]}
             alt={`${state?.name} ${currentImageIndex}`}
-            className="landmark-details-images"
+            className="landmark-details-images border-2 rounded border-black"
           />
         )}
       </div>
