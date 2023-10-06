@@ -6,9 +6,6 @@ import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 
 const LandmarkDetails = () => {
   const { state } = useLocation();
-  console.log('state', state);
-  console.log('state.images', state.images.length);
-  console.log('coordinates', state.coordinates);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [coordinates, setCoordinates] = useState({
@@ -46,19 +43,19 @@ const LandmarkDetails = () => {
   useEffect(() => {
     // Update coordinates state with data values
     setCoordinates({
-      latitude: state.coordinates.latitude,
-      longitude: state.coordinates.longitude,
+      latitude: state?.coordinates.latitude,
+      longitude: state?.coordinates.longitude,
     });
-  }, [state.coordinates]);
+  }, [state?.coordinates]);
 
   return (
     <>
       <div className="mt-16 m-2 text-center gap-2 flex flex-col items-center">
-        <h1 className="text-2xl font-extrabold">{state.name}</h1>
-        {state.images.length > 0 && (
+        <h1 className="text-2xl font-extrabold">{state?.name}</h1>
+        {state?.images.length > 0 && (
           <img
             src={state?.images[currentImageIndex % state.images.length]}
-            alt={`${state.name} ${currentImageIndex}`}
+            alt={`${state?.name} ${currentImageIndex}`}
             className="landmark-details-images"
           />
         )}
@@ -68,13 +65,13 @@ const LandmarkDetails = () => {
           <div className="flex flex-col gap-1">
             <h2 className="font-bold">Description:</h2>
             <p>
-              {state.description || 'No info'}
+              {state?.description || 'No info'}
             </p>
             <h2 className="font-bold">Historical Significance:</h2>
             <p>
               -
               {' '}
-              {state.historical_significance || 'No info'}
+              {state?.historical_significance || 'No info'}
               {' '}
               <br />
             </p>
@@ -82,50 +79,50 @@ const LandmarkDetails = () => {
             <p>
               -
               {' '}
-              {state.opening_hours}
+              {state?.opening_hours}
             </p>
             <h2 className="font-bold">Weather:</h2>
             <p>
               -
               {' '}
-              {state.weather}
+              {state?.weather}
             </p>
             <h2 className="font-bold">Wildlife:</h2>
             <p>
               -
               {' '}
-              {state.wildlife || 'No wildlife'}
+              {state?.wildlife || 'No wildlife'}
             </p>
             <h2 className="font-bold">Accessibility:</h2>
             <p>
               -
               {' '}
-              {state.accessibility}
+              {state?.accessibility}
             </p>
             <h2 className="font-bold">Entry fees:</h2>
             <p>
               -
               {' '}
-              {state.visiting_price}
+              {state?.visiting_price}
             </p>
             <h2 className="font-bold">Entry requirements:</h2>
             <p>
               -
               {' '}
-              {state.entry_requirements}
+              {state?.entry_requirements}
             </p>
             <h2 className="font-bold">Photography:</h2>
             <p>
               -
               {' '}
-              {state.photography_rules}
+              {state?.photography_rules}
             </p>
           </div>
           <div className=" flex flex-col gap-1 mt-1">
             <div className="historical-timeline">
               <h2 className="font-bold">Historical Timeline:</h2>
               <ul className="flex flex-col break-words">
-                {state.history_timeline ? (
+                {state?.history_timeline ? (
                   Object.entries(state.history_timeline).map(([event, date]) => (
                     <li key={event} className="list-disc ml-7 capitalize">
                       {event}
@@ -144,14 +141,14 @@ const LandmarkDetails = () => {
             <p>
               -
               {' '}
-              {state.local_culture}
+              {state?.local_culture}
             </p>
 
             <div className="special-events">
               <h2 className="font-bold">Special events:</h2>
               <ul>
-                {state.special_events !== 'None' ? (
-                  state.special_events.map((event) => (
+                {state?.special_events !== 'None' ? (
+                  state?.special_events.map((event) => (
                     <li key={event} className="list-disc ml-7">{event}</li>
                   ))
                 ) : (
@@ -163,8 +160,8 @@ const LandmarkDetails = () => {
             <div className="tips-for-visitors">
               <h2 className="font-bold">Tips for visitors:</h2>
               <ul className="break-words">
-                {state.tips_for_visitors ? (
-                  state.tips_for_visitors.map((tip) => (
+                {state?.tips_for_visitors ? (
+                  state?.tips_for_visitors.map((tip) => (
                     <li key={tip} className="list-disc ml-7">{tip}</li>
                   ))
                 ) : (
@@ -176,8 +173,8 @@ const LandmarkDetails = () => {
             <div className="nearby-attractions">
               <h2 className="font-bold">Nearby attractions:</h2>
               <ul>
-                {state.nearby_attractions ? (
-                  state.nearby_attractions.map((attraction) => (
+                {state?.nearby_attractions ? (
+                  state?.nearby_attractions.map((attraction) => (
                     <li key={attraction} className="list-disc ml-7">{attraction}</li>
                   ))
                 ) : (
@@ -189,8 +186,8 @@ const LandmarkDetails = () => {
             <div className="facilities">
               <h2 className="font-bold">Facilities:</h2>
               <ul className="break-words">
-                {state.facilities ? (
-                  Object.entries(state.facilities).map(([facility, available]) => (
+                {state?.facilities ? (
+                  Object.entries(state?.facilities).map(([facility, available]) => (
                     <li key={facility} className="list-disc ml-7 capitalize">
                       {facility}
                       :
@@ -204,11 +201,11 @@ const LandmarkDetails = () => {
 
               <h2 className="font-bold">Parking Information:</h2>
               <ul>
-                {state.parking_information ? (
+                {state?.parking_information ? (
                   <li className="list-disc ml-7">
                     Fees:
                     {' '}
-                    {state.parking_information.fees}
+                    {state?.parking_information.fees}
                   </li>
                 ) : (
                   <li>No info</li>
@@ -218,14 +215,14 @@ const LandmarkDetails = () => {
               <h2 className="font-bold">Guided Tours:</h2>
               <ul>
                 <li className="list-disc ml-7">
-                  {state.guided_tours ? 'Available' : 'Not Available'}
+                  {state?.guided_tours ? 'Available' : 'Not Available'}
                 </li>
               </ul>
 
               <h2 className="font-bold">Souvenir Shops:</h2>
               <ul>
                 <li className="list-disc ml-7">
-                  {state.souvenir_shops ? 'Available' : 'Not Available'}
+                  {state?.souvenir_shops ? 'Available' : 'Not Available'}
                 </li>
               </ul>
 
@@ -236,7 +233,7 @@ const LandmarkDetails = () => {
         <div className="location p-2">
           <p className="font-bold py-2 break-words">
             Location:
-            {state.address}
+            {state?.address}
           </p>
 
           <MapContainer
@@ -256,17 +253,17 @@ const LandmarkDetails = () => {
               <li>
                 Phone number:
                 {' '}
-                {state.contact_information.phone}
+                {state?.contact_information.phone}
               </li>
               <li>
                 Email:
                 {' '}
-                <a href={`mailto:${state.contact_information.email}`} className="underline text-blue-500 break-words">{state.contact_information.email}</a>
+                <a href={`mailto:${state?.contact_information.email}`} className="underline text-blue-500 break-words">{state?.contact_information.email}</a>
               </li>
               <li>
                 Website:
                 {' '}
-                <a href={state.contact_information.website} className="underline text-blue-500 break-words">{state.contact_information.website}</a>
+                <a href={state?.contact_information.website} className="underline text-blue-500 break-words">{state?.contact_information.website}</a>
               </li>
             </ul>
           </div>

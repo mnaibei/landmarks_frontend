@@ -1,6 +1,6 @@
 const IntroHeader = () => (
   <header className="intro-header bg-white text-center mt-16 dark:bg-[#545252]">
-    <div className=" border-2 border-gray-200 shadow p-4 m-2">
+    <div className=" border-2 rounded border-gray-200 shadow p-4 m-2">
       <h1 className=" text-2xl font-extrabold">Embark on an African Adventure</h1>
       <p className="text-sm">
         Welcome to a mesmerizing journey through the diverse and enchanting world of Africa&apos;s
