@@ -81,6 +81,7 @@ const Landmarks = () => {
                 <img
                   src={landmark.images[currentImageIndex % landmark.images.length]}
                   alt={`${landmark.name} ${currentImageIndex}`}
+                  loading="lazy"
                   className="landmark-images border-2 rounded border-black"
                 />
               )}

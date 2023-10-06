@@ -15,10 +15,10 @@ const LandmarkDetails = () => {
 
   // make map responsive
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
-  const desktopZoom = 2.5;
-  const mobileZoom = 1.1;
+  const desktopZoom = 10;
+  const mobileZoom = 10;
   const desktopHeight = '500px';
-  const mobileHeight = '200px';
+  const mobileHeight = '50vh';
 
   const zoomLevel = isMobile ? mobileZoom : desktopZoom;
   const mapHeight = isMobile ? mobileHeight : desktopHeight;
@@ -28,11 +28,6 @@ const LandmarkDetails = () => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => {
         const nextImageIndex = (prevIndex + 1) % state.images.length;
-
-        console.log('state.length', state.images.length);
-        console.log('currentImageIndex', prevIndex);
-        console.log('nextImageIndex', nextImageIndex);
-
         return nextImageIndex;
       });
     }, 3000); // Change image every 3 seconds (adjust as needed)
@@ -41,12 +36,18 @@ const LandmarkDetails = () => {
   }, [state]);
 
   useEffect(() => {
-    // Update coordinates state with data values
+    // Update coordinates state with float values
     setCoordinates({
-      latitude: state?.coordinates.latitude,
-      longitude: state?.coordinates.longitude,
+      latitude: parseFloat(state?.coordinates.latitude, 10) || 0,
+      // Parse and fallback to 0 if not a valid float
+      longitude: parseFloat(state?.coordinates.longitude, 10) || 0,
+      // Parse and fallback to 0 if not a valid float
     });
   }, [state?.coordinates]);
+
+  const latitude = state?.coordinates.latitude || 0;
+  const longitude = state?.coordinates.longitude || 0;
+  // var latlng = [coordinates.latitude, coordinates.longitude];
 
   return (
     <>
@@ -60,7 +61,7 @@ const LandmarkDetails = () => {
           />
         )}
       </div>
-      <div className="description m-2 border-2  grid grid-cols-2 p-2">
+      <div className="description m-2 border-2  grid grid-cols-2 max-sm:grid-cols-1 p-2">
         <div className="details-description p-2">
           <div className="flex flex-col gap-1">
             <h2 className="font-bold">Description:</h2>
@@ -237,7 +238,8 @@ const LandmarkDetails = () => {
           </p>
 
           <MapContainer
-            center={[coordinates.latitude, coordinates.longitude]}
+            // center={[coordinates.latitude, coordinates.longitude]}
+            center={[latitude, longitude]}
             zoom={zoomLevel} // You can adjust the zoom level as needed
             style={{ height: mapHeight, width: '100%' }} // Set the map size
             className="border-2 border-black z-0"
