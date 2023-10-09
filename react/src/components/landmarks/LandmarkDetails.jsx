@@ -42,7 +42,7 @@ const LandmarkDetails = () => {
 
   return (
     <>
-      <div>
+      <div className="mt-16">
         <h1>{state.name}</h1>
         {state.images.length > 0 && (
           <img
@@ -119,7 +119,7 @@ const LandmarkDetails = () => {
         <div className="special-events">
           <p>Special events:</p>
           <ul>
-            {state.special_events ? (
+            {state.special_events !== 'None' ? (
               state.special_events.map((event) => (
                 <li key={event}>{event}</li>
               ))
