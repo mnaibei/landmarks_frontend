@@ -5,10 +5,13 @@ import store from './redux/store';
 import App from './App';
 import './index.css';
 
+const rootElement = document.getElementById('root');
+rootElement.classList.add('dark:bg-[#545252]', 'dark:text-white');
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

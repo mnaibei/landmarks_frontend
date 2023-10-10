@@ -11,7 +11,6 @@ const router = createBrowserRouter([
       <>
         <Nav />
         <Landmarks />
-        ,
       </>
     ),
   },
@@ -21,7 +20,6 @@ const router = createBrowserRouter([
       <>
         <Nav />
         <LandmarkDetails />
-        ,
       </>
     ),
   },
