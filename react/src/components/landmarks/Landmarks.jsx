@@ -22,7 +22,7 @@ const Landmarks = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % landmarks.length);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % landmarks?.length);
     }, 35000);
 
     return () => clearInterval(interval);
@@ -75,12 +75,13 @@ const Landmarks = () => {
             <div
               key={landmark.id}
               className={`landmarks-card border-2 rounded shadow flex flex-col h-9/12 w-full justify-center items-center p-2 ${index === currentImageIndex ? 'active' : ''
-                }`}
+              }`}
             >
               {landmark.images.length > 0 && (
                 <img
                   src={landmark.images[currentImageIndex % landmark.images.length]}
                   alt={`${landmark.name} ${currentImageIndex}`}
+                  loading="lazy"
                   className="landmark-images border-2 rounded border-black"
                 />
               )}
@@ -103,11 +104,17 @@ const Landmarks = () => {
                 </p>
                 <Link
                   to={`landmark/${landmark.name.replace(/\s+/g, '-').toLowerCase()}`}
+                  aria-label={`Learn more about ${landmark.name}}`}
                   state={landmark}
                   key={landmark.id}
                   className="learn-more flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-2 border border-blue-500 hover:border-transparent rounded max-sm:w-full xl:w-2/5 max-lg:w-full justify-center items-center self-end marker:p-1 dark:text-white dark:border-white"
                 >
-                  <button type="button">Learn More</button>
+                  <button
+                    type="button"
+                    aria-label="Learn More"
+                  >
+                    Learn More
+                  </button>
                 </Link>
               </div>
             </div>
@@ -118,6 +125,7 @@ const Landmarks = () => {
             onClick={() => handlePageChange((currentPage - 1 + pageCount) % pageCount)}
             disabled={currentPage === 0}
             type="button"
+            aria-label="Previous Page"
           >
             <AiOutlineArrowLeft />
           </button>
@@ -134,6 +142,7 @@ const Landmarks = () => {
             onClick={() => handlePageChange((currentPage + 1) % pageCount)}
             disabled={currentPage === pageCount - 1}
             type="button"
+            aria-label="Next Page"
           >
             <AiOutlineArrowRight />
           </button>

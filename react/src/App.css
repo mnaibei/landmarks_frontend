@@ -16,11 +16,13 @@
 .landmark-images {
   width: 100%;
   height: 400px;
+  object-fit: cover;
 }
 
 .landmark-details-images {
-  height: 700px;
-  width: 70%;
+  height: 70vh;
+  width: 80%;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 1000px) {
@@ -37,12 +39,14 @@
   }
 
   .landmark-images {
-    height: 200px;
+    height: 250px;
+    object-fit: cover;
   }
 
   .landmark-details-images {
-    height: 300px;
+    height: 30vh;
     width: 100%;
+    object-fit: cover;
   }
 
   .test {
