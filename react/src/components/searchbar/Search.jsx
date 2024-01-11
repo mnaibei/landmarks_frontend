@@ -25,6 +25,11 @@ export default function SearchComponent({ value, onChange }) {
           className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
           value={value} // Set the input value
           onChange={onChange} // Pass the onChange handler
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+            }
+          }}
         />
       </div>
     </form>
